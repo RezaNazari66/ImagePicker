@@ -40,7 +40,7 @@ class CropProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
     private val mCropAspectY: Float
     private var mCropImageFile: File? = null
     private val mFileDir: File
-
+    private var mCropByCircleFrame = false;
     init {
         val bundle = activity.intent.extras ?: Bundle()
 
@@ -52,7 +52,7 @@ class CropProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
         mCrop = bundle.getBoolean(ImagePicker.EXTRA_CROP, false)
         mCropAspectX = bundle.getFloat(ImagePicker.EXTRA_CROP_X, 0f)
         mCropAspectY = bundle.getFloat(ImagePicker.EXTRA_CROP_Y, 0f)
-
+        mCropByCircleFrame = bundle.getBoolean(ImagePicker.CIRCLE_FRAME, false);
         // Get File Directory
         val fileDir = bundle.getString(ImagePicker.EXTRA_SAVE_DIRECTORY)
         mFileDir = getFileDir(fileDir)
@@ -111,6 +111,7 @@ class CropProvider(activity: ImagePickerActivity) : BaseProvider(activity) {
         }
 
         val options = UCrop.Options()
+        options.setCircleDimmedLayer(mCropByCircleFrame)
         options.setCompressionFormat(FileUtil.getCompressFormat(extension))
 
         val uCrop = UCrop.of(uri, Uri.fromFile(mCropImageFile))

@@ -84,6 +84,7 @@ class MainActivity : AppCompatActivity() {
         ImagePicker.with(this)
             // Crop Square image
             .galleryOnly()
+            .circleFrame()
             .cropSquare()
             .setImageProviderInterceptor { imageProvider -> // Intercept ImageProvider
                 Log.d("ImagePicker", "Selected ImageProvider: " + imageProvider.name)

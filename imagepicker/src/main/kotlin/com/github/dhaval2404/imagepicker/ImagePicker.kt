@@ -35,6 +35,7 @@ open class ImagePicker {
         internal const val EXTRA_MAX_HEIGHT = "extra.max_height"
         internal const val EXTRA_SAVE_DIRECTORY = "extra.save_directory"
 
+        internal const val CIRCLE_FRAME = "extra.circle_frame";
         internal const val EXTRA_ERROR = "extra.error"
         internal const val EXTRA_FILE_PATH = "extra.file_path"
         internal const val EXTRA_MIME_TYPES = "extra.mime_types"
@@ -89,6 +90,7 @@ open class ImagePicker {
         private var cropX: Float = 0f
         private var cropY: Float = 0f
         private var crop: Boolean = false
+        private var circleFrame: Boolean = false;
 
         /*
          * Resize Parameters
@@ -179,6 +181,11 @@ open class ImagePicker {
          */
         fun crop(): Builder {
             this.crop = true
+            return this
+        }
+
+        fun circleFrame(): Builder {
+            this.circleFrame = true
             return this
         }
 
@@ -339,6 +346,7 @@ open class ImagePicker {
                 putSerializable(EXTRA_IMAGE_PROVIDER, imageProvider)
                 putStringArray(EXTRA_MIME_TYPES, mimeTypes)
 
+                putBoolean(CIRCLE_FRAME, circleFrame)
                 putBoolean(EXTRA_CROP, crop)
                 putFloat(EXTRA_CROP_X, cropX)
                 putFloat(EXTRA_CROP_Y, cropY)

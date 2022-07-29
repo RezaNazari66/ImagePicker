@@ -99,6 +99,7 @@ public class SampleActivity extends AppCompatActivity {
         ImagePicker.with(this)
                 // Crop Square image
                 .cropSquare()
+                .circleFrame()
                 .setImageProviderInterceptor(new Function1<ImageProvider, Unit>() {
                     @Override
                     public Unit invoke(ImageProvider imageProvider) {
